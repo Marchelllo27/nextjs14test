@@ -3,7 +3,7 @@ import Link from "next/link";
 import ImageSlideShow from "@/components/images/image-slideshow";
 import classes from "./page.module.css";
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <header className={classes.header}>
