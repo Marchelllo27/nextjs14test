@@ -24,3 +24,6 @@ export default function MealItem({ title, slug, image, summary, creator }) {
     </article>
   );
 }
+
+
+//comment below
