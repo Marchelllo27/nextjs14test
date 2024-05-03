@@ -2,25 +2,29 @@ import Image from "next/image";
 
 import classes from "./page.module.css";
 import { getMeal } from "@/lib/meals";
+import { notFound } from "next/navigation";
 
 const MealDetailsPage = async ({ params }) => {
-  const { title, image, creator_email, creator, instructions, summary } = await getMeal(params.mealSlug);
+  const meal = await getMeal(params.mealSlug);
 
-  console.log(instructions);
-  const instr = instructions.replace(/\n/g, "<br />");
+  if (!meal) {
+    notFound();
+  }
+
+  const instr = meal.instructions.replace(/\n/g, "<br />");
 
   return (
     <>
       <header className={classes.header}>
         <div className={classes.image}>
-          <Image src={image} alt={title} fill />
+          <Image src={meal.image} alt={meal.title} fill />
         </div>
         <div className={classes.headerText}>
-          <h1>{title}</h1>
+          <h1>{meal.title}</h1>
           <p className={classes.creator}>
-            by <a href={`mailto:${creator_email}`}>{creator}</a>
+            by <a href={`mailto:${meal.creator_email}`}>{meal.creator}</a>
           </p>
-          <p className={classes.summary}>{summary}</p>
+          <p className={classes.summary}>{meal.summary}</p>
         </div>
       </header>
       <main>
