@@ -7,7 +7,10 @@ export default async function Home() {
   return (
     <>
       <header className={classes.header}>
-        <ImageSlideShow />
+        <div className={classes.slideshow}>
+          <ImageSlideShow />
+        </div>
+
         <div>
           <div className={classes.hero}>
             <h1>NextLevel Food for NextLevel Foodies</h1>
